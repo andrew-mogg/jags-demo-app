@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 
-import { Quarterback } from '../models/quarterback';
+import { IQuarterback } from '../models/IQuarterback';
 import { QuarterbackService } from '../services/quarterback.service';
 
 @Component({
@@ -11,9 +11,9 @@ import { QuarterbackService } from '../services/quarterback.service';
 })
 export class QuarterbacksComponent implements OnInit {
 
-  quarterbacks: Quarterback[] = [];
+  quarterbacks: IQuarterback[] = [];
   displayedColumns: string[] = ['position', 'name'];
-  dataSource = new MatTableDataSource<Quarterback>(null);
+  dataSource = new MatTableDataSource<IQuarterback>(null);
 
   constructor(private quarterbackService: QuarterbackService) { }
 

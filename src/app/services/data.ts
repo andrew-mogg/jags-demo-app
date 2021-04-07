@@ -1,6 +1,6 @@
-import { DefaultSort, Quarterback, Type } from '../models/quarterback';
+import { DefaultSort, QuarterbackData, Type } from '../models/IQuarterbackData';
 
-export const QUARTERBACKS: Quarterback[] = [
+export const QUARTERBACKS: QuarterbackData[] = [
   {
     "totalRows": 13,
     "status": "OK",

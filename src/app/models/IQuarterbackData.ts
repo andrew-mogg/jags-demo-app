@@ -1,4 +1,4 @@
-export interface Quarterback {
+export interface QuarterbackData {
   totalRows: number;
   status:    string;
   startRow:  number;
