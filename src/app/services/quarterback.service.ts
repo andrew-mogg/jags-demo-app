@@ -84,13 +84,13 @@ export class QuarterbackService {
         .filter((gs) => gs.passingTds)
         .reduce((a, b) => a + b.passingTds, 0),
       rushAttempts: gameStats
-        .filter((gs) => gs.attempts)
+        .filter((gs) => gs.rushAttempts)
         .reduce((a, b) => a + b.rushAttempts, 0),
       rushYards: gameStats
-        .filter((gs) => gs.attempts)
+        .filter((gs) => gs.rushYards)
         .reduce((a, b) => a + b.rushYards, 0),
       rushTds: gameStats
-        .filter((gs) => gs.attempts)
+        .filter((gs) => gs.rushTds)
         .reduce((a, b) => a + b.rushTds, 0),
     };
     seasonStats.completionPercentage =
