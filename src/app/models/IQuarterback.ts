@@ -37,4 +37,6 @@ export interface IGameData {
   rushAttempts:    number;
   rushYards:  number;
   rushTds:    number;
+  yardsPerAttempt?: number;
+  completionPercentage?: number;
 }

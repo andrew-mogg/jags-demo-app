@@ -39,7 +39,8 @@ export class QuarterbackService {
             rushYards:  Number(q[17]),
             rushTds:    Number(q[18])
           }
-
+          gameData.completionPercentage = gameData.completions / gameData.attempts;
+          gameData.yardsPerAttempt = gameData.passingYards / gameData.attempts;
           gameDataList.push(gameData);
       });
 
