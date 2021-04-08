@@ -11,8 +11,10 @@ import { QuarterbackService } from '../services/quarterback.service';
 })
 export class QuarterbacksComponent implements OnInit {
 
+  selectedQb: number = 0;
   quarterbacks: IQuarterback[] = [];
-  displayedColumns: string[] = ['position', 'name'];
+  activeQb: IQuarterback;
+  displayedColumns: string[] = ['week', 'opponentName', 'gameDate', 'attempts', 'completions', 'sacks', 'interceptions', 'passingYards', 'passingTds', 'rushYards', 'rushTds', 'yardsPerAttempt', 'completionPercentage'];
   dataSource = new MatTableDataSource<IQuarterback>(null);
 
   constructor(private quarterbackService: QuarterbackService) { }
@@ -26,6 +28,12 @@ export class QuarterbacksComponent implements OnInit {
       .subscribe(quarterbacks => (
         this.quarterbacks = quarterbacks)
         );
+  }
+
+  updateTable(event: any) {
+    this.activeQb = this.quarterbacks.filter(qb => qb.playerId == event.value)[0];
+    console.log(this.activeQb)
+
   }
 
 }
