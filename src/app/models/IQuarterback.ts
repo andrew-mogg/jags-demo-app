@@ -1,13 +1,13 @@
 import { IStats } from './IStats';
 
 export interface IQuarterback {
-  playerId: number;
-  name: string;
-  playerImage: string;
-  seasonYear: number;
-  teamImage: string;
-  seasonStats: IStats;
-  gameData: IGameData[];
+  playerId?: number;
+  name?: string;
+  playerImage?: string;
+  seasonYear?: number;
+  teamImage?: string;
+  seasonStats?: IStats;
+  gameData?: IGameData[];
 }
 
 export interface IQuarterbackSeasonData {
@@ -23,9 +23,10 @@ export interface IGameData {
   playerImage: string;
   seasonYear: number;
   week: number;
+  gameDate: string;
+  teamName: string;
   teamImage: string;
-  abbreviatedName: string;
-  opponent: string;
+  opponentName: string;
   opponentImage: string;
   attempts:    number;
   completions:  number;
