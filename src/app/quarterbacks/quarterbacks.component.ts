@@ -11,6 +11,7 @@ import { QuarterbackService } from "../services/quarterback.service";
 })
 export class QuarterbacksComponent implements OnInit {
   selectedQb: number = 0;
+  selectedStatCategory: string = "";
   quarterbacks: IQuarterback[] = [];
   activeQb: IQuarterback;
   displayedColumns: string[] = [
@@ -27,6 +28,19 @@ export class QuarterbacksComponent implements OnInit {
     "sacks",
     "rushYards",
     "rushTds",
+  ];
+
+  statCategories: string[] = [
+    "Y/A",
+    "Cmp%",
+    "Cmp",
+    "ATT",
+    "Yds (pass)",
+    "TD (pass)",
+    "Int",
+    "Sk",
+    "Yds (rush)",
+    "Td (rush)",
   ];
   dataSource = new MatTableDataSource<IQuarterback>(null);
 
@@ -53,5 +67,9 @@ export class QuarterbacksComponent implements OnInit {
       (qb) => qb.playerId == event.value
     )[0];
     console.log(this.selectedQb);
+  }
+
+  showChartStat(event: any) {
+
   }
 }

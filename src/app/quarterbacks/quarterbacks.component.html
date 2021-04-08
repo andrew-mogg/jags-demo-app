@@ -3,17 +3,21 @@
     <h4>Select Player</h4>
     <mat-form-field appearance="fill">
       <mat-label>Quarterback</mat-label>
-      <mat-select [(value)]="selectedQb" (selectionChange)="updateTable($event)">
+      <mat-select
+        [(value)]="selectedQb"
+        (selectionChange)="updateTable($event)"
+      >
         <mat-option *ngFor="let qb of quarterbacks" [value]="qb.playerId">
           {{ qb.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <!-- <img alt="Team Name" *ngIf="activeQb" src="{{activeQb.teamImage}}"/> -->
-</div>
-<div class="player-info" *ngIf="activeQb">
-  <img alt="{{activeQb.name}}" src="{{activeQb.playerImage}}"/>
-</div>
+    <h3>{{ activeQb.seasonYear }} Stats</h3>
+  </div>
+  <div class="player-info" *ngIf="activeQb">
+    <img alt="{{ activeQb.name }}" src="{{ activeQb.playerImage }}" />
+  </div>
 </div>
 <div class="mat-elevation-z8" *ngIf="activeQb">
   <table mat-table [dataSource]="activeQb.gameData" class="mat-elevation-z8">
@@ -36,7 +40,6 @@
       </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
-
 
     <ng-container matColumnDef="yardsPerAttempt">
       <th mat-header-cell *matHeaderCellDef>Yards Per Attempt</th>
@@ -124,4 +127,24 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
   </table>
+</div>
+<div>
+  <div>
+    <h3>{{ activeQb.seasonYear }} Stats Visualization</h3>
+    <h4>Select Stat</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Stat</mat-label>
+      <mat-select
+        [(value)]="selectedStatCategory"
+        (selectionChange)="showChartStat($event)"
+      >
+        <mat-option *ngFor="let sc of statCategories" [value]="sc">
+          {{ sc }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div *ngIf="selectedStatCategory">
+    <h4>charts here of game to game stat data for season... ran out of time</h4>
+  </div>
 </div>
