@@ -1,4 +1,4 @@
-import { IStats } from './IStats';
+import { ISeasonStats } from './ISeasonStats';
 
 export interface IQuarterback {
   playerId?: number;
@@ -6,7 +6,7 @@ export interface IQuarterback {
   playerImage?: string;
   seasonYear?: number;
   teamImage?: string;
-  seasonStats?: IStats;
+  seasonStats?: ISeasonStats;
   gameData?: IGameData[];
 }
 

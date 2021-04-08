@@ -1,4 +1,7 @@
-export interface IStats {
+export interface ISeasonStats {
+  year: number;
+  yardsPerAttempt?: number;
+  completionPercentage?: number;
   attempts:    number;
   completions:  number;
   sacks:    number;
