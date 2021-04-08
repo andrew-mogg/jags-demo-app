@@ -14,7 +14,7 @@ export class QuarterbacksComponent implements OnInit {
   selectedQb: number = 0;
   quarterbacks: IQuarterback[] = [];
   activeQb: IQuarterback;
-  displayedColumns: string[] = ['week', 'opponentName', 'gameDate', 'attempts', 'completions', 'sacks', 'interceptions', 'passingYards', 'passingTds', 'rushYards', 'rushTds', 'yardsPerAttempt', 'completionPercentage'];
+  displayedColumns: string[] = ['week', 'opponentName', 'gameDate', 'yardsPerAttempt', 'completionPercentage', 'completions', 'attempts', 'passingYards', 'passingTds', 'interceptions', 'sacks', 'rushYards', 'rushTds'];
   dataSource = new MatTableDataSource<IQuarterback>(null);
 
   constructor(private quarterbackService: QuarterbackService) { }

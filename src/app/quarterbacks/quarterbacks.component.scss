@@ -1,3 +1,16 @@
 table {
   width: 100%;
 }
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+.player {
+  display: flex;
+  justify-content: space-between;
+}
+
+.player-info {
+
+}

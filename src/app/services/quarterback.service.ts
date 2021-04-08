@@ -74,7 +74,7 @@ export class QuarterbackService {
       rushTds: gameStats.filter(gs => gs.attempts).reduce((a, b) => a + b.rushTds, 0),
     }
     seasonStats.completionPercentage = seasonStats.completions / seasonStats.attempts;
-    seasonStats.yardsPerAttempt = seasonStats.passingYards / seasonStats.attempts;
+    seasonStats.yardsPerAttempt = Math.ceil((seasonStats.passingYards / seasonStats.attempts) * 10) / 10;;
 
     return seasonStats;
   }

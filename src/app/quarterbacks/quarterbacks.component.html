@@ -1,73 +1,49 @@
-<h4>Select Player</h4>
-<mat-form-field appearance="fill">
-  <mat-label>Quarterback</mat-label>
-  <mat-select (selectionChange)="updateTable($event)">
-    <mat-option *ngFor="let qb of quarterbacks" [value]="qb.playerId">
-      {{ qb.name }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-
+<div class="player">
+  <div class="player-selector">
+    <h4>Select Player</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Quarterback</mat-label>
+      <mat-select (selectionChange)="updateTable($event)">
+        <mat-option *ngFor="let qb of quarterbacks" [value]="qb.playerId">
+          {{ qb.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- <img alt="Team Name" *ngIf="activeQb" src="{{activeQb.teamImage}}"/> -->
+</div>
+<div class="player-info" *ngIf="activeQb">
+  <img alt="{{activeQb.name}}" src="{{activeQb.playerImage}}"/>
+</div>
+</div>
 <div class="mat-elevation-z8" *ngIf="activeQb">
   <table mat-table [dataSource]="activeQb.gameData" class="mat-elevation-z8">
     <ng-container matColumnDef="week">
       <th mat-header-cell *matHeaderCellDef>Week</th>
       <td mat-cell *matCellDef="let element">{{ element.week }}</td>
+      <td mat-footer-cell *matFooterCellDef>Season</td>
     </ng-container>
 
     <ng-container matColumnDef="opponentName">
       <th mat-header-cell *matHeaderCellDef>Opponent</th>
       <td mat-cell *matCellDef="let element">{{ element.opponentName }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="gameDate">
       <th mat-header-cell *matHeaderCellDef>Date</th>
-      <td mat-cell *matCellDef="let element">{{ element.gameDate | date: 'MM/dd/yyyy'}}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.gameDate | date: "MM/dd/yyyy" }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
-    <ng-container matColumnDef="attempts">
-      <th mat-header-cell *matHeaderCellDef>Pass Attempts</th>
-      <td mat-cell *matCellDef="let element">{{ element.attempts }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="completions">
-      <th mat-header-cell *matHeaderCellDef>Completions</th>
-      <td mat-cell *matCellDef="let element">{{ element.completions }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="sacks">
-      <th mat-header-cell *matHeaderCellDef>Sacks</th>
-      <td mat-cell *matCellDef="let element">{{ element.sacks }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="interceptions">
-      <th mat-header-cell *matHeaderCellDef>Interceptions</th>
-      <td mat-cell *matCellDef="let element">{{ element.interceptions }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="passingYards">
-      <th mat-header-cell *matHeaderCellDef>Passing Yards</th>
-      <td mat-cell *matCellDef="let element">{{ element.passingYards }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="passingTds">
-      <th mat-header-cell *matHeaderCellDef>Passing TDs</th>
-      <td mat-cell *matCellDef="let element">{{ element.passingTds }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="rushYards">
-      <th mat-header-cell *matHeaderCellDef>Rush Yards</th>
-      <td mat-cell *matCellDef="let element">{{ element.rushYards }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="rushTds">
-      <th mat-header-cell *matHeaderCellDef>Rush TDs</th>
-      <td mat-cell *matCellDef="let element">{{ element.rushTds }}</td>
-    </ng-container>
 
     <ng-container matColumnDef="yardsPerAttempt">
       <th mat-header-cell *matHeaderCellDef>Yards Per Attempt</th>
       <td mat-cell *matCellDef="let element">{{ element.yardsPerAttempt }}</td>
+      <td mat-footer-cell *matFooterCellDef>
+        {{ activeQb.seasonStats.yardsPerAttempt }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="completionPercentage">
@@ -75,9 +51,77 @@
       <td mat-cell *matCellDef="let element">
         {{ element.completionPercentage | percent }}
       </td>
+      <td mat-footer-cell *matFooterCellDef>
+        {{ activeQb.seasonStats.completionPercentage | percent }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="attempts">
+      <th mat-header-cell *matHeaderCellDef>Pass Attempts</th>
+      <td mat-cell *matCellDef="let element">{{ element.attempts }}</td>
+      <td mat-footer-cell *matFooterCellDef>
+        {{ activeQb.seasonStats.attempts }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="completions">
+      <th mat-header-cell *matHeaderCellDef>Completions</th>
+      <td mat-cell *matCellDef="let element">{{ element.completions }}</td>
+      <td mat-footer-cell *matFooterCellDef>
+        {{ activeQb.seasonStats.completions }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sacks">
+      <th mat-header-cell *matHeaderCellDef>Sacks</th>
+      <td mat-cell *matCellDef="let element">{{ element.sacks }}</td>
+      <td mat-footer-cell *matFooterCellDef>
+        {{ activeQb.seasonStats.sacks }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="interceptions">
+      <th mat-header-cell *matHeaderCellDef>Interceptions</th>
+      <td mat-cell *matCellDef="let element">{{ element.interceptions }}</td>
+      <td mat-footer-cell *matFooterCellDef>
+        {{ activeQb.seasonStats.interceptions }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="passingYards">
+      <th mat-header-cell *matHeaderCellDef>Passing Yards</th>
+      <td mat-cell *matCellDef="let element">{{ element.passingYards }}</td>
+      <td mat-footer-cell *matFooterCellDef>
+        {{ activeQb.seasonStats.passingYards }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="passingTds">
+      <th mat-header-cell *matHeaderCellDef>Passing TDs</th>
+      <td mat-cell *matCellDef="let element">{{ element.passingTds }}</td>
+      <td mat-footer-cell *matFooterCellDef>
+        {{ activeQb.seasonStats.passingTds }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rushYards">
+      <th mat-header-cell *matHeaderCellDef>Rush Yards</th>
+      <td mat-cell *matCellDef="let element">{{ element.rushYards }}</td>
+      <td mat-footer-cell *matFooterCellDef>
+        {{ activeQb.seasonStats.rushYards }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rushTds">
+      <th mat-header-cell *matHeaderCellDef>Rush TDs</th>
+      <td mat-cell *matCellDef="let element">{{ element.rushTds }}</td>
+      <td mat-footer-cell *matFooterCellDef>
+        {{ activeQb.seasonStats.rushTds }}
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
   </table>
 </div>
