@@ -3,7 +3,7 @@
     <h4>Select Player</h4>
     <mat-form-field appearance="fill">
       <mat-label>Quarterback</mat-label>
-      <mat-select (selectionChange)="updateTable($event)">
+      <mat-select [(value)]="selectedQb" (selectionChange)="updateTable($event)">
         <mat-option *ngFor="let qb of quarterbacks" [value]="qb.playerId">
           {{ qb.name }}
         </mat-option>

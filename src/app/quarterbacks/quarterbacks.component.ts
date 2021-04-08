@@ -26,13 +26,15 @@ export class QuarterbacksComponent implements OnInit {
   getQuarterbacks() {
     this.quarterbackService.getQuarterbacks()
       .subscribe(quarterbacks => (
-        this.quarterbacks = quarterbacks)
+        this.quarterbacks = quarterbacks,
+        this.activeQb = this.quarterbacks[0],
+        this.selectedQb = this.activeQb.playerId)
         );
   }
 
   updateTable(event: any) {
     this.activeQb = this.quarterbacks.filter(qb => qb.playerId == event.value)[0];
-    console.log(this.activeQb)
+    console.log(this.selectedQb)
 
   }
 
